@@ -23,7 +23,7 @@ export default function Dice({ rotation, rolling, duration, delay, tiltY, label 
         >
           <div
             className="die-tilt"
-            style={{ transform: `rotateX(-14deg) rotateY(${tiltY}deg)` }}
+            style={{ transform: `rotateX(-20deg) rotateY(${tiltY}deg)` }}
           >
             <div
               className="die-cube"
