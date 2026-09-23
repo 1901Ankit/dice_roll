@@ -1,5 +1,5 @@
 /**
- * One face of a die: an ivory tile with pips laid out on a 3x3 grid.
+ * One face of a die: a translucent glass tile with pips laid out on a 3x3 grid.
  * Cell indices (0-8) that carry a pip for each value.
  */
 const PIP_CELLS = {
@@ -22,11 +22,11 @@ const FACE_TRANSFORM = {
 
 const DIE_COLORS = {
   red: {
-    face: 'bg-[radial-gradient(120%_120%_at_28%_22%,#f87171_0%,#ef4444_45%,#dc2626_100%)]',
+    face: 'bg-[radial-gradient(140%_140%_at_26%_18%,rgba(255,255,255,0.65)_0%,rgba(224,17,95,0.4)_15%,rgba(224,17,95,0.75)_45%,rgba(45,2,20,0.95)_100%)]',
     pip: 'bg-[radial-gradient(circle_at_36%_30%,#ffffff_0%,#f1f5f9_62%,#cbd5e1_100%)]',
   },
   blue: {
-    face: 'bg-[radial-gradient(120%_120%_at_28%_22%,#60a5fa_0%,#3b82f6_45%,#2563eb_100%)]',
+    face: 'bg-[radial-gradient(140%_140%_at_26%_18%,rgba(255,255,255,0.65)_0%,rgba(15,82,186,0.4)_15%,rgba(15,82,186,0.75)_45%,rgba(3,12,40,0.95)_100%)]',
     pip: 'bg-[radial-gradient(circle_at_36%_30%,#ffffff_0%,#f1f5f9_62%,#cbd5e1_100%)]',
   },
 };
@@ -36,7 +36,7 @@ export default function DiceFace({ face, value, color = 'red' }) {
   const palette = DIE_COLORS[color] ?? DIE_COLORS.red;
   return (
     <div
-      className={`absolute inset-0 grid rounded-[13%] p-[17%] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.15),inset_0_-8px_16px_rgba(0,0,0,0.15),inset_0_6px_12px_rgba(255,255,255,0.35)] backface-hidden ${palette.face} ${FACE_TRANSFORM[face]}`}
+      className={`absolute inset-0 grid rounded-[13%] border border-white/35 p-[17%] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4),inset_0_-10px_18px_rgba(0,0,0,0.3),inset_0_8px_14px_rgba(255,255,255,0.55)] backdrop-blur-[2px] backface-hidden ${palette.face} ${FACE_TRANSFORM[face]}`}
       data-value={value}
     >
       <div className="grid grid-cols-3 grid-rows-3">

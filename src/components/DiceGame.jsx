@@ -4,7 +4,7 @@ import RollButton from './RollButton';
 import GameStatus from './GameStatus';
 import { useShakeDetector } from '../hooks/useShakeDetector';
 import { randomDie, restRotation, rollTimings, tumbleTo } from '../utils/dice';
-import { playDiceSound, primeAudio } from '../utils/sound';
+import { playDiceSound, playResultSound, primeAudio } from '../utils/sound';
 
 const INITIAL_VALUES = [5, 2];
 
@@ -43,6 +43,7 @@ export default function DiceGame() {
       rollingRef.current = false;
       setRolling(false);
       setResult({ a, b, total: a + b, stamp: Date.now(), rolled: true });
+      playResultSound();
       if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
         navigator.vibrate([80, 40, 120]);
       }
