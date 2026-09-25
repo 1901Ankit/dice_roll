@@ -5,6 +5,7 @@ import GameStatus from './GameStatus';
 import { useShakeDetector } from '../hooks/useShakeDetector';
 import { randomDie, restRotation, rollTimings, tumbleTo } from '../utils/dice';
 import { playDiceSound, playResultSound, primeAudio } from '../utils/sound';
+import bgImage from '../assets/winner.png';
 
 const INITIAL_VALUES = [5, 2];
 
@@ -53,7 +54,7 @@ export default function DiceGame() {
   const { motionState, requestPermission } = useShakeDetector(roll);
 
   const handleRollClick = useCallback(() => {
-    primeAudio(); 
+    primeAudio();
     roll();
   }, [roll]);
 
@@ -90,19 +91,20 @@ export default function DiceGame() {
   }
 
   return (
-    <main className="relative grid min-h-dvh place-items-center overflow-hidden bg-[radial-gradient(120%_90%_at_50%_0%,var(--color-base-2)_0%,var(--color-base)_60%)] px-4 pt-[calc(20px+env(safe-area-inset-top))] pb-[calc(24px+env(safe-area-inset-bottom))]">
+    <main
+      className="relative grid min-h-dvh place-items-center overflow-hidden bg-cover bg-center bg-no-repeat px-4 
+       "
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div
-        className="pointer-events-none absolute -top-[25vmax] -left-[20vmax] h-[60vmax] w-[60vmax] animate-drift-a rounded-full bg-[radial-gradient(circle,#6366f1_0%,transparent_65%)] opacity-[0.28] blur-[90px] motion-reduce:animate-none"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute -right-[25vmax] -bottom-[30vmax] h-[60vmax] w-[60vmax] animate-drift-b rounded-full bg-[radial-gradient(circle,#f59e0b_0%,transparent_65%)] opacity-[0.18] blur-[90px] motion-reduce:animate-none"
+        className="pointer-events-none absolute inset-0 bg-black/25 backdrop-blur-[1px]"
         aria-hidden="true"
       />
 
       <section
-        className="relative flex w-[min(100%,440px)] flex-col items-center gap-[clamp(14px,3.5vw,22px)] rounded-[30px] border border-white/15 bg-[linear-gradient(165deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.05)_45%,rgba(255,255,255,0.09)_100%)] px-[clamp(20px,5vw,36px)] pt-[clamp(24px,6vw,40px)] pb-[calc(clamp(18px,4vw,26px)+env(safe-area-inset-bottom))] shadow-[0_34px_90px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.22),inset_0_-1px_0_rgba(255,255,255,0.05)] ring-1 ring-white/10 ring-inset backdrop-blur-2xl backdrop-saturate-150"
-        aria-label="Shake and Roll dice game"
+        className="relative isolate flex w-[min(100%,450px)] flex-col items-center gap-[clamp(14px,3.5vw,22px)] overflow-hidden rounded-[32px] bg-cover bg-center bg-no-repeat px-[clamp(20px,5vw,36px)] pt-[clamp(24px,6vw,38px)] pb-[calc(clamp(18px,4vw,26px)+env(safe-area-inset-bottom))] shadow-[0_30px_90px_rgba(0,0,0,0.75)] before:absolute before:inset-0 before:-z-10 before:bg-black/45 before:content-['']"
+        aria-label="Shake and Roll dice game" style={{ backgroundImage: `url(${bgImage})` }}
+
       >
         <header className="text-center">
           <p className="mb-2 text-[clamp(0.62rem,2.4vw,0.72rem)] font-bold tracking-[0.42em] text-accent uppercase">
@@ -111,7 +113,7 @@ export default function DiceGame() {
           <h1 className="bg-[linear-gradient(180deg,#ffffff_20%,#b9c2d8_90%)] bg-clip-text text-[clamp(2rem,8.5vw,2.9rem)] leading-[1.05] font-black tracking-[0.02em] text-transparent [-webkit-text-fill-color:transparent] [text-shadow:0_0_42px_rgba(245,158,11,0.18)]">
             SHAKE &amp; ROLL
           </h1>
-          <p className="mt-2 text-[clamp(0.82rem,3vw,0.95rem)] font-medium text-dim">
+          <p className="mt-2 text-[clamp(0.82rem,3vw,0.95rem)] font-medium text-dim bg-[linear-gradient(180deg,#ffffff_20%,#b9c2d8_90%)] bg-clip-text [-webkit-text-fill-color:transparent]">
             Shake your phone to roll the dice
           </p>
         </header>
@@ -138,16 +140,16 @@ export default function DiceGame() {
         </div>
 
         <div
-          className={`flex min-h-[7.5em] flex-col items-center justify-center gap-0.5 transition-opacity duration-250${rolling ? ' opacity-35' : ''}`}
+          className={`flex  flex-col items-center justify-center gap-0.5 transition-opacity duration-250${rolling ? ' opacity-35' : ''}`}
           aria-live="polite"
           aria-atomic="true"
         >
-          <div className="mb-1 flex items-center gap-3 text-[0.72rem] font-bold tracking-[0.22em] text-dim">
+          {/* <div className="mb-1 flex items-center gap-3 text-[0.72rem] font-bold tracking-[0.22em] text-dim">
             <span>DIE 1: {result.a}</span>
             <span className="h-1 w-1 rounded-full bg-faint" aria-hidden="true" />
             <span>DIE 2: {result.b}</span>
-          </div>
-          <span className="text-[0.68rem] font-extrabold tracking-[0.5em] indent-[0.5em] text-faint">
+          </div> */}
+          <span className="text-[0.68rem] font-extrabold tracking-[0.5em] ">
             TOTAL
           </span>
           <span
@@ -156,7 +158,7 @@ export default function DiceGame() {
           >
             {result.total}
           </span>
-          <span className="text-[clamp(0.9rem,3.4vw,1.05rem)] font-semibold tracking-[0.18em] text-dim">
+          <span className="text-[clamp(0.9rem,3.4vw,1.05rem)] font-semibold tracking-[0.18em] ">
             {result.a} + {result.b}
           </span>
           <span className="sr-only">
@@ -166,18 +168,18 @@ export default function DiceGame() {
 
         <RollButton rolling={rolling} onRoll={handleRollClick} />
 
-        <div className="grid min-h-10 place-items-center">
+        <div className="grid  place-items-center">
           {motionState === 'needs-permission' && (
             <button
               type="button"
-              className="rounded-full border border-cyan/45 bg-cyan/8 px-[26px] py-[11px] text-[0.78rem] font-extrabold tracking-[0.22em] text-cyan backdrop-blur-md transition-[background,transform,border-color] duration-200 hover:-translate-y-px hover:border-cyan/70 hover:bg-cyan/16 active:translate-y-0 active:scale-[0.97]"
+              className="rounded-full border border-accent/60 bg-black/55 px-[26px] py-[11px] text-[0.78rem] font-extrabold tracking-[0.22em] text-accent shadow-[0_0_24px_rgba(245,158,11,0.28)] backdrop-blur-md transition-[background,transform,border-color,box-shadow] duration-200 select-none hover:-translate-y-px hover:border-accent hover:bg-accent/10 hover:shadow-[0_0_36px_rgba(245,158,11,0.45)] active:translate-y-0 active:scale-[0.97]"
               onClick={handleEnableMotion}
             >
               ENABLE MOTION
             </button>
           )}
           {motionState === 'enabled' && (
-            <span className="inline-flex items-center gap-2 rounded-full border border-green/35 bg-green/7 px-[18px] py-[9px] text-[0.7rem] font-bold tracking-[0.24em] text-green backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 rounded-full border border-green/40 bg-black/50 px-[18px] py-[9px] text-[0.7rem] font-bold tracking-[0.24em] text-green backdrop-blur-md">
               <span
                 className="h-[7px] w-[7px] animate-chip-pulse rounded-full bg-green motion-reduce:animate-none"
                 aria-hidden="true"
@@ -186,22 +188,20 @@ export default function DiceGame() {
             </span>
           )}
           {motionState === 'denied' && (
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/3 px-[18px] py-[9px] text-[0.7rem] font-bold tracking-[0.24em] text-dim backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/50 px-[18px] py-[9px] text-[0.7rem] font-bold tracking-[0.24em] text-dim backdrop-blur-md">
               Motion off — the button still works
             </span>
           )}
           {motionState === 'unsupported' && (
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/3 px-[18px] py-[9px] text-[0.7rem] font-bold tracking-[0.24em] text-dim backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/50 px-[18px] py-[9px] text-[0.7rem] font-bold tracking-[0.24em] text-dim backdrop-blur-md">
               Motion unavailable — use Roll Dice
             </span>
           )}
         </div>
 
-        <GameStatus tone={statusTone}>{statusText}</GameStatus>
+        {/* <GameStatus tone={statusTone}>{statusText}</GameStatus> */}
 
-        <footer className="text-[0.66rem] font-semibold tracking-[0.2em] text-faint uppercase opacity-75">
-          <span>2D6 · works offline · no app needed</span>
-        </footer>
+        
       </section>
     </main>
   );

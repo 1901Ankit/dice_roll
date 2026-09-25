@@ -38,7 +38,7 @@ export default function Dice({ rotation, rolling, duration, delay, tiltY, label,
           style={timingStyle}
         /> */}
       </div>
-      <span className="text-[0.68rem] font-bold tracking-[0.28em] text-faint uppercase mt-4">
+      <span className="text-[0.78rem] font-bold tracking-[0.28em] text-faint uppercase mt-4 bg-[linear-gradient(180deg,#ffffff_20%,#b9c2d8_90%)] bg-clip-text [-webkit-text-fill-color:transparent]">
         {label}
       </span>
     </div>

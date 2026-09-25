@@ -100,3 +100,7 @@
     border-radius: 6px;
   }
 }
+
+::-webkit-scrollbar{
+  display:none;
+}
