@@ -97,13 +97,13 @@ export default function DiceGame() {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-black/25 backdrop-blur-[1px]"
+        className="pointer-events-none absolute inset-0 bg-black/25 "
         aria-hidden="true"
       />
 
       <section
-        className="relative isolate flex w-[min(100%,450px)] flex-col items-center gap-[clamp(14px,3.5vw,22px)] overflow-hidden rounded-[32px] bg-cover bg-center bg-no-repeat px-[clamp(20px,5vw,36px)] pt-[clamp(24px,6vw,38px)] pb-[calc(clamp(18px,4vw,26px)+env(safe-area-inset-bottom))] shadow-[0_30px_90px_rgba(0,0,0,0.75)] before:absolute before:inset-0 before:-z-10 before:bg-black/45 before:content-['']"
-        aria-label="Shake and Roll dice game" style={{ backgroundImage: `url(${bgImage})` }}
+        className="relative  flex w-[min(100%,450px)] flex-col items-center gap-[clamp(14px,3.5vw,22px)]  bg-cover bg-center bg-no-repeat px-[clamp(20px,5vw,36px)] pt-[clamp(24px,6vw,38px)]   "
+        // aria-label="Shake and Roll dice game" style={{ backgroundImage: `url(${bgImage})` }}
 
       >
         <header className="text-center">
